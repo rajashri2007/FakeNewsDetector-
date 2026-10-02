@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">AI & Generative AI</p>
+          <h1>AI Fake News &amp; Misinformation Detector</h1>
+        </div>
+      </header>
+
+      <main class="container">
+        <section class="hero card">
+          <p class="subtitle">Analyze online content using NLP and source verification.</p>
+
+          <div class="mode-toggle" aria-label="Input mode selector">
+            <button class="mode-button active" type="button" data-mode="text">Paste Text</button>
+            <button class="mode-button" type="button" data-mode="url">Analyze URL</button>
+          </div>
+
+          {% if error %}
+          <div class="alert error">{{ error }}</div>
+          {% endif %}
+
+          <form action="{{ url_for('analyze') }}" method="post" class="analysis-form">
+            <div id="text-panel" class="input-panel active">
+              <label for="text">Paste text or article content</label>
+              <textarea id="text" name="text" rows="8" placeholder="Paste a social media post, article snippet, or news text here..."></textarea>
+            </div>
+
+            <div id="url-panel" class="input-panel">
+              <label for="url">Article URL</label>
+              <input id="url" name="url" type="url" placeholder="https://example.com/article" />
+            </div>
+
+            <div class="button-row">
+              <button class="primary" type="submit">Analyze</button>
+              <button class="secondary" type="button" id="clear-btn">Clear</button>
+              <a class="link-button" href="{{ url_for('history') }}">View History</a>
+            </div>
+          </form>
+
+          <p class="disclaimer">
+            This tool provides an automated NLP-based assessment. It does not prove whether a claim is true or false. Always verify important information using reliable independent sources.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

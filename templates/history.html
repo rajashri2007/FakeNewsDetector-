@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar narrow">
+        <div>
+          <p class="eyebrow">Saved checks</p>
+          <h1>History</h1>
+        </div>
+        <a class="link-button" href="{{ url_for('home') }}">Back Home</a>
+      </header>
+
+      <main class="history-container">
+        {% if history %}
+          {% for item in history %}
+          <article class="card history-item">
+            <div class="history-header">
+              <strong>{{ item.prediction }}</strong>
+              <span class="badge badge-source">{{ item.source_status }}</span>
+            </div>
+            <div class="meta-row">
+              <span>Score: {{ item.credibility_score }}/100</span>
+              <span>Confidence: {{ item.model_confidence }}%</span>
+            </div>
+            <p class="history-meta">Type: {{ item.input_type }} | Domain: {{ item.domain or 'N/A' }}</p>
+            <p>{{ item.title or item.input_value }}</p>
+            <small>{{ item.created_at }}</small>
+          </article>
+          {% endfor %}
+        {% else %}
+          <div class="card empty-state">
+            <p>No analyses have been saved yet.</p>
+          </div>
+        {% endif %}
+      </main>
+    </div>
+  </body>
+</html>

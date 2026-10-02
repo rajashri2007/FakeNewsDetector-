@@ -1,0 +1,27 @@
+[
+  {
+    "domain": "nytimes.com",
+    "publisher_name": "The New York Times",
+    "category": "news"
+  },
+  {
+    "domain": "bbc.com",
+    "publisher_name": "BBC",
+    "category": "news"
+  },
+  {
+    "domain": "reuters.com",
+    "publisher_name": "Reuters",
+    "category": "news"
+  },
+  {
+    "domain": "washingtonpost.com",
+    "publisher_name": "The Washington Post",
+    "category": "news"
+  },
+  {
+    "domain": "theguardian.com",
+    "publisher_name": "The Guardian",
+    "category": "news"
+  }
+]

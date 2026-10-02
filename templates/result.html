@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar narrow">
+        <div>
+          <p class="eyebrow">Credibility assessment</p>
+          <h1>Result</h1>
+        </div>
+        <a class="link-button" href="{{ url_for('home') }}">Back Home</a>
+      </header>
+
+      <main class="result-container">
+        <section class="score-card card">
+          <div class="score-ring" aria-label="Credibility score">
+            <div class="score-ring-inner">
+              <strong>{{ result.credibility_score }}</strong>
+              <span>/ 100</span>
+            </div>
+          </div>
+
+          <div class="score-summary">
+            <h2>{{ result.prediction }}</h2>
+            <p class="muted">Model confidence: {{ result.model_confidence }}%</p>
+            <span class="badge badge-source">{{ result.source_status }}</span>
+          </div>
+        </section>
+
+        <section class="details-grid">
+          <article class="card detail-card">
+            <h3>Assessment Overview</h3>
+            <ul class="info-list">
+              <li><span>NLP Classification</span><strong>{{ result.prediction }}</strong></li>
+              <li><span>Model Confidence</span><strong>{{ result.model_confidence }}%</strong></li>
+              <li><span>Source Verification</span><strong>{{ result.source_status }}</strong></li>
+              <li><span>Publisher/Domain</span><strong>{{ result.source_publisher }} / {{ result.domain }}</strong></li>
+            </ul>
+          </article>
+
+          <article class="card detail-card">
+            <h3>Article Information</h3>
+            <ul class="info-list">
+              <li><span>Title</span><strong>{{ result.title }}</strong></li>
+              <li><span>Author</span><strong>{{ result.author }}</strong></li>
+              <li><span>Publication Date</span><strong>{{ result.publication_date }}</strong></li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="card breakdown-card">
+          <h3>Score Breakdown</h3>
+          <div class="breakdown-list">
+            <div class="breakdown-item">
+              <span>NLP assessment</span>
+              <strong>{{ result.score_breakdown.nlp }}</strong>
+            </div>
+            <div class="breakdown-item">
+              <span>Source verification</span>
+              <strong>{{ result.score_breakdown.source }}</strong>
+            </div>
+            <div class="breakdown-item">
+              <span>Article/source signals</span>
+              <strong>{{ result.score_breakdown.quality }}</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="card explanation-card">
+          <h3>Why this result?</h3>
+          <p>{{ result.explanation }}</p>
+        </section>
+
+        <section class="card disclaimer-card">
+          <h3>Disclaimer</h3>
+          <p>{{ result.disclaimer }}</p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
